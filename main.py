@@ -1,45 +1,43 @@
 from utils import Utils as utils
+from utils import State
 # Define board and player markers
 
-
 def main():
-    board = [' ' for _ in range(9)]
-    player = 'X'
-    computer = 'O'
+    game_state = State(9, 'X', 'O')
 
     # Main game loop
     while True:
-      utils.print_board(board)
+      utils.print_board(game_state._board)
 
       # Player's turn
       while True:
         position = int(input("Enter your move (1-9): ")) - 1
-        if utils.is_space_free(position, board):
+        if utils.is_space_free(position, game_state._board):
           break
         else:
           print("Invalid move. Please try again.")
-      utils.make_move(position, player, board)
+      utils.make_move(position, game_state._player, game_state._board)
 
-      if utils.is_winner(player, board):
-        utils.print_board(board)
+      if utils.is_winner(game_state._player, game_state._board):
+        utils.print_board(game_state._board)
         print("You win!")
         break
-      elif utils.is_board_full(board):
-        utils.print_board(board)
+      elif utils.is_board_full(game_state._board):
+        utils.print_board(game_state._board)
         print("It's a draw!")
         break
 
       # Computer's turn
-      position = utils.get_computer_move(computer, board, player)
-      utils.make_move(position, computer, board)
+      position = utils.get_computer_move(game_state._computer, game_state._board, game_state._player)
+      utils.make_move(position, game_state._computer, game_state._board)
       print(f"Computer plays at position {position + 1}")  # Show computer's move
 
-      if utils.is_winner(computer, board):
-        utils.print_board(board)
+      if utils.is_winner(game_state._computer, game_state._board):
+        utils.print_board(game_state._board)
         print("You lose!")
         break
-      elif utils.is_board_full(board):
-        utils.print_board(board)
+      elif utils.is_board_full(game_state._board):
+        utils.print_board(game_state._board)
         print("It's a draw!")
         break
 

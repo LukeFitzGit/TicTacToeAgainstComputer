@@ -89,3 +89,13 @@ class Utils:
           best_move = position
       return best_move
 
+class State:
+    def __init__(self, tiles, player, computer):
+        self._tiles = tiles
+        self._board = State.board(self)
+        self._player = player
+        self._computer = computer
+
+    def board(self):
+        return [' ' for _ in range(self._tiles)]
+
