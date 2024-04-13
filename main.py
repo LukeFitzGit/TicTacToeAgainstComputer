@@ -1,15 +1,14 @@
 from utils import Utils as utils
 from utils import State
-# Define board and player markers
 
 def main():
+    # game state object for holding current state
     game_state = State(9, 'X', 'O')
 
-    # Main game loop
     while True:
       utils.print_board(game_state._board)
 
-      # Player's turn
+      # player 
       while True:
         position = int(input("Enter your move (1-9): ")) - 1
         if utils.is_space_free(position, game_state._board):
@@ -27,7 +26,7 @@ def main():
         print("It's a draw!")
         break
 
-      # Computer's turn
+      # computer 
       position = utils.get_computer_move(game_state._computer, game_state._board, game_state._player)
       utils.make_move(position, game_state._computer, game_state._board)
       print(f"Computer plays at position {position + 1}")  # Show computer's move
