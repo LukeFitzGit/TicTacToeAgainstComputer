@@ -86,12 +86,16 @@ class Utils:
 
 # holds game state information
 class State:
-    def __init__(self, tiles, player, computer):
-        self._tiles = tiles
+    def __init__(self, grid, player, computer):
+        self._grid = grid
+        self._tiles = State.tiles(self)
         self._board = State.board(self)
         self._player = player
         self._computer = computer
 
     def board(self):
         return [' ' for _ in range(self._tiles)]
+
+    def tiles(self):
+        return self._grid * self._grid
 

@@ -3,7 +3,7 @@ from utils import State
 
 def main():
     # game state object for holding current state
-    game_state = State(9, 'X', 'O')
+    game_state = State(3, 'X', 'O')
 
     while True:
       utils.print_board(game_state._board)
