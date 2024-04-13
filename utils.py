@@ -1,18 +1,18 @@
 class Utils:
     # display board 
-    def print_board(board):
+    def display_board(board):
       for i in range(3):
         print(' | '.join(board[i*3:(i*3)+3]))
         if i != 2:
           print('-' * 9)
 
     # check if space empty 
-    def is_space_free(position, board):
+    def check_if_space_free(position, board):
       return board[position] == ' '
 
 
     # check if player or computer has won 
-    def is_winner(mark, board):
+    def check_is_winner(mark, board):
       win_conditions = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
       for condition in win_conditions:
         if board[condition[0]] == mark and board[condition[1]] == mark and board[condition[2]] == mark:
@@ -37,9 +37,9 @@ class Utils:
     # Minimax algorithm with Alpha-Beta Pruning
     def minimax(board, depth, is_maximizing, alpha, beta, player, computer):
       # Check if the game is over
-      if Utils.is_winner(player, board):
+      if Utils.check_is_winner(player, board):
         return -10
-      if Utils.is_winner(computer, board):
+      if Utils.check_is_winner(computer, board):
         return 10
       if Utils.is_board_full(board):
         return 0
