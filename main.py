@@ -6,7 +6,7 @@ def main():
     game_state = State(3, 'X', 'O')
 
     while True:
-      utils.display_board(game_state._board)
+      utils.display_board(game_state)
 
       # player 
       while True:
@@ -17,26 +17,26 @@ def main():
           print("Invalid move. Please try again.")
       utils.make_move(position, game_state._player, game_state._board)
 
-      if utils.check_is_winner(game_state._player, game_state._board):
-        utils.display_board(game_state._board)
+      if utils.check_is_winner(game_state._player, game_state._board, game_state._grid):
+        utils.display_board(game_state)
         print("You win!")
         break
       elif utils.is_board_full(game_state._board):
-        utils.display_board(game_state._board)
+        utils.display_board(game_state)
         print("It's a draw!")
         break
 
       # computer 
-      position = utils.get_computer_move(game_state._computer, game_state._board, game_state._player)
+      position = utils.get_computer_move(game_state._computer, game_state._board, game_state._player, game_state._grid)
       utils.make_move(position, game_state._computer, game_state._board)
       print(f"Computer plays at position {position + 1}")  # Show computer's move
 
-      if utils.check_is_winner(game_state._computer, game_state._board):
-        utils.display_board(game_state._board)
+      if utils.check_is_winner(game_state._computer, game_state._board, game_state._grid):
+        utils.display_board(game_state)
         print("You lose!")
         break
       elif utils.is_board_full(game_state._board):
-        utils.display_board(game_state._board)
+        utils.display_board(game_state)
         print("It's a draw!")
         break
 
